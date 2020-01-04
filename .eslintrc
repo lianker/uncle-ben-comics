@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "react-app",
+    "airbnb"
+  ],
+  "rules": {
+    "no-unused-vars": "warn",
+    "linebreak-style": "off",
+    "space-before-function-paren": "off",
+    "comma-dangle": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-one-expression-per-line": ["enabled", {
+      "allow": "none"
+    }]
+  }
+}
