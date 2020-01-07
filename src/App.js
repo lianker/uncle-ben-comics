@@ -1,25 +1,41 @@
 import React from 'react'
-import logo from './logo.svg'
+import 'semantic-ui-css/semantic.min.css'
 import './App.css'
+import { Container, Menu } from 'semantic-ui-react'
+import ComicDetail from "./components/ComicDetail/ComicDetail";
 
-function App() {
+
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+
+import ComicList from './components/ComicList/ComicList'
+
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container styles={{marginTop: '5px'}}>
+      <div className="App-header">Uncle ben Comics</div>
+      <Router>
+        <div>
+          <Menu>
+            <Menu.Item as={Link} to="/">
+              Home
+            </Menu.Item>
+            <Menu.Item as={Link} to="/comics">
+              Comics
+            </Menu.Item>
+          </Menu>
+
+          <Switch>
+            <Route path="/comics/:comicId" component={ComicDetail} />
+            <Route path="/comics">
+              <ComicList />
+            </Route>
+            <Route path="/">
+              <div>Home</div>
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </Container>
   )
 }
 
