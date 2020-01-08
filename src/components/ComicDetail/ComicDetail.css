@@ -1,0 +1,28 @@
+.comic-detail-container {
+  display: flex;
+  justify-content: center;
+}
+.detail-wrapper {
+  height: 20em;
+  width: 100%;
+  max-width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+}
+
+.comic-cover {
+  order: 1;
+  flex-grow: 1;  
+  height: 20em;
+  min-width: 15em;
+  border: 1px solid #B8870B;
+}
+
+.description-wrapper {
+  order: 1;
+  flex-grow: 2;  
+  height: 20em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
