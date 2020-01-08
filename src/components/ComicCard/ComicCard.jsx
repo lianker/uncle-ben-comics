@@ -10,7 +10,7 @@ function ComicCard({ comicId, title, path, extension, price }) {
   const match = useRouteMatch()
 
   return (
-    <div className="ComicCard">
+    <div className="ComicCard" >
       <div
         style={{
           backgroundSize: '100% 100%',

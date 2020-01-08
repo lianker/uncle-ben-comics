@@ -2,16 +2,15 @@ import React from 'react'
 import 'semantic-ui-css/semantic.min.css'
 import './App.css'
 import { Container, Menu } from 'semantic-ui-react'
-import ComicDetail from "./components/ComicDetail/ComicDetail";
+import ComicDetailContainer from './containers/ComicDetailContainer'
 
-
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 
 import ComicList from './components/ComicList/ComicList'
 
 function App(props) {
   return (
-    <Container styles={{marginTop: '5px'}}>
+    <Container styles={{ marginTop: '5px' }}>
       <div className="App-header">Uncle ben Comics</div>
       <Router>
         <div>
@@ -25,16 +24,17 @@ function App(props) {
           </Menu>
 
           <Switch>
-            <Route path="/comics/:comicId" component={ComicDetail} />
+            <Route path="/comics/:comicId" component={ComicDetailContainer} />
             <Route path="/comics">
               <ComicList />
             </Route>
             <Route path="/">
-              <div>Home</div>
+              <Redirect to="/comics" />
             </Route>
           </Switch>
         </div>
       </Router>
+      
     </Container>
   )
 }
