@@ -68,7 +68,7 @@ describe('MarvelApi', () => {
       axios.get.mockResolvedValue({
         data: {
           data: {
-            results: [{comic: {id: 1}}]
+            results: [{ comic: { id: 1 } }]
           }
         }
       })
@@ -142,7 +142,58 @@ describe('MarvelApi', () => {
     it('Should return correct response', async () => {
       const result = await api.getComics({})
 
-      expect(result).toEqual([{comic: {id: 1}}])
+      expect(result).toEqual([{ comic: { id: 1 } }])
+    })
+  })
+
+  describe('.getComicById()', () => {
+    let api
+    let defaultParams
+
+    beforeEach(() => {
+      axios.get.mockResolvedValue({
+        data: {
+          data: {
+            results: [{ comic: { id: 1 } }]
+          }
+        }
+      })
+
+      defaultParams = {
+        ts: 23,
+        apikey: 'bar',
+        hash: 'c6703fab7ee263e9181e3735bee11525'
+      }
+
+      api = new MarvelApi({
+        publicKey: 'bar',
+        privateKey: 'foo'
+      })
+
+      jest.spyOn(api, 'createDefaultParams').mockReturnValue(defaultParams)
+    })
+
+    it('should call axios.get method', async () => {
+      await api.getComicById(3123)
+
+      expect(axios.get).toHaveBeenCalled()
+    })
+
+    it('should call axios.get with correct params', async () => {
+      await api.getComicById(3123)
+
+      expect(
+        axios.get
+      ).toHaveBeenCalledWith(
+        'http://gateway.marvel.com/v1/public/comics/3123',
+        { params: defaultParams }
+      )
+    })
+
+    it('Should return correct response', async () => {
+      const result = await api.getComicById(3123)
+
+      expect(result).toEqual({ comic: { id: 1 } })
     })
   })
 })

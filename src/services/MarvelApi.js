@@ -22,7 +22,7 @@ export default class MarvelApi {
 
   get publicKey() {
     if (!this._publicKey) {
-      throw new Error('invalid public key') 
+      throw new Error('invalid public key')
     }
 
     return this._publicKey
@@ -61,6 +61,19 @@ export default class MarvelApi {
 
     return axios.get(comicsUrl, options).then(response => {
       return response.data.data.results
+    })
+  }
+
+  async getComicById(comicId) {
+    const comicsUrl = `${BASE_URL}/${API_VERSION}/public/comics/${comicId}`
+
+    const defaultParams = this.createDefaultParams(
+      this.privateKey,
+      this.publicKey
+    )
+
+    return axios.get(comicsUrl, { params: defaultParams }).then(response => {
+      return response.data.data.results[0]
     })
   }
 }
